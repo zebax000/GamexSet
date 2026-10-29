@@ -1,0 +1,7 @@
+Aqui van tus juegos de consola.
+
+- Extensiones inequivocas (.gba .nes .sfc .smc .z64 .n64 .v64 .gb .gbc .nds .md .gen): sueltos aqui.
+- Formatos ambiguos (.iso .chd .bin .cue .zip): en una subcarpeta con el nombre del sistema de RetroBat, por ejemplo ps2 o psx.
+- Juegos de PC: en la subcarpeta PC.
+
+Luego ejecuta 2-AGREGAR-JUEGOS.bat

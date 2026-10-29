@@ -1,0 +1,10 @@
+RetroBat/
+Pon-tus-juegos-aqui/**/*.iso
+Pon-tus-juegos-aqui/**/*.chd
+Pon-tus-juegos-aqui/**/*.bin
+Pon-tus-juegos-aqui/**/*.cue
+Pon-tus-juegos-aqui/**/*.zip
+Pon-tus-juegos-aqui/**/*.7z
+Pon-tus-juegos-aqui/_procesados/
+bios/
+*.exe

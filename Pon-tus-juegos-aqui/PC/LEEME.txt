@@ -1,0 +1,7 @@
+Juegos de PC: pon aqui la carpeta completa y descomprimida de cada juego (o un .zip).
+
+Ejemplo:
+PC\FIFA 15\fifa15.exe
+
+Si el script elige mal el .exe, crea ejecutable.txt dentro de la carpeta del juego con la ruta relativa del .exe correcto.
+Luego ejecuta 2-AGREGAR-JUEGOS.bat
