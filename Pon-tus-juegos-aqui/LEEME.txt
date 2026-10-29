@@ -1,7 +1,3 @@
-Aqui van tus juegos de consola.
-
-- Extensiones inequivocas (.gba .nes .sfc .smc .z64 .n64 .v64 .gb .gbc .nds .md .gen): sueltos aqui.
-- Formatos ambiguos (.iso .chd .bin .cue .zip): en una subcarpeta con el nombre del sistema de RetroBat, por ejemplo ps2 o psx.
-- Juegos de PC: en la subcarpeta PC.
-
-Luego ejecuta 2-AGREGAR-JUEGOS.bat
+CARPETA ANTIGUA. La version actual es solo para PS2.
+Copia manualmente tus ISO de PS2 a Juegos/PS2 y abre JUGAR.bat.
+No se mueve ni se borra ningun archivo automaticamente. Conserva tus partidas antiguas.

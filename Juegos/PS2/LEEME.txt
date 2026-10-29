@@ -1,0 +1,4 @@
+Copia aqui tus ISO de juegos de PS2. Puedes usar subcarpetas.
+Primera vez: ejecuta PREPARAR.bat y configura esta carpeta en la biblioteca de PCSX2.
+Despues abre JUGAR.bat y elige el juego. Si no aparece, vuelve a examinar la biblioteca.
+No copies BIOS aqui. No se incluyen juegos.

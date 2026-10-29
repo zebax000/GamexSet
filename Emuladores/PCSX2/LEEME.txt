@@ -1,0 +1,4 @@
+Extrae aqui la distribucion portable COMPLETA de PCSX2 para Windows, descargada de https://pcsx2.net/downloads/
+El ejecutable pcsx2*.exe debe quedar directamente en esta carpeta, no dentro de otra subcarpeta.
+Despues ejecuta PREPARAR.bat. Aporta tu propia BIOS y configura el mando una vez.
+No se incluyen emulador, BIOS ni partidas en GitHub.

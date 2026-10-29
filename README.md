@@ -1,48 +1,30 @@
-# GamexSet
+# GamexSet — PS2
 
-USB portable de juegos para Windows basada en [RetroBat](https://www.retrobat.org/).
-Descargas este repositorio como ZIP, lo extraes en tu USB, ejecutas un instalador y solo agregas juegos.
+Una carpeta de juegos y un acceso para abrir PCSX2. Sin RetroBat. Solo PS2 por ahora.
 
-> Estado: primera version. Los scripts estan escritos pero conviene probarlos en tu USB antes de confiar en ellos.
+## Primera preparación
+1. Extrae el repositorio completo en una carpeta con permisos de escritura, por ejemplo en tu USB. No ejecutes los BAT dentro del ZIP.
+2. Ejecuta PREPARAR.bat. Si falta PCSX2, se abrirá su página oficial: descarga la distribución portable para Windows y extrae TODO su contenido dentro de Emuladores/PCSX2 (el ejecutable debe quedar directamente ahí). Si viene comprimida en 7z, necesitas una herramienta compatible para extraerla.
+3. Ejecuta PREPARAR.bat otra vez. Creará portable.ini sin sobrescribir tus ajustes.
+4. En el asistente de PCSX2, selecciona tu BIOS, extraída de tu propia PS2, y configura el mando. No incluimos ni descargamos BIOS ni juegos.
+5. Añade Juegos/PS2 como carpeta de biblioteca y activa la búsqueda en subcarpetas.
 
-## Requisitos
+## Uso diario
+Copia tus ISO de PS2 en Juegos/PS2 y abre JUGAR.bat. Elige un juego en PCSX2. Si no aparece, vuelve a examinar la biblioteca. No necesitas ejecutar un importador ni instalar cada juego. Los archivos comprimidos ZIP/RAR/7z deben extraerse primero. Una ISO de PC u otra consola no es un juego de PS2.
 
-- Windows 10 u 11.
-- USB formateada en exFAT o NTFS (FAT32 no admite archivos de mas de 4 GB).
-- Internet la primera vez (RetroBat descarga los emuladores cuando falta alguno).
+## Carpetas
+- PREPARAR.bat: preparación inicial.
+- JUGAR.bat: abre PCSX2 portable.
+- Juegos/PS2: tus juegos; se permiten subcarpetas.
+- Emuladores/PCSX2: distribución completa del emulador, BIOS y datos portables.
+- scripts: lógica pequeña de preparación y arranque.
 
-## Uso rapido
+## USB y límites
+El modo portable conserva los datos del emulador junto a él. Si cambias la letra de la USB y no aparecen los juegos, vuelve a seleccionar Juegos/PS2 en la biblioteca. El rendimiento depende del computador y no se garantiza compatibilidad con todos los juegos. Cierra PCSX2 antes de retirar la USB.
 
-1. En GitHub: Code > Download ZIP. Extrae el contenido en la raiz de tu USB.
-2. Ejecuta `1-INSTALAR.bat` (una sola vez).
-3. Pon tus juegos en `Pon-tus-juegos-aqui` (ver abajo).
-4. Ejecuta `2-AGREGAR-JUEGOS.bat`.
-5. Ejecuta `3-JUGAR.bat`.
+## Migración
+Este cambio no borra carpetas, juegos o partidas de tu computador ni convierte partidas de RetroBat. Haz una copia de seguridad antes de retirar una instalación antigua. Los accesos y scripts antiguos quedan sustituidos por redirecciones a la nueva versión; sus nombres no se eliminan en este commit. No uses Pon-tus-juegos-aqui: la carpeta actual es Juegos/PS2.
 
-## Como poner los juegos
+Otras consolas se añadirán solo si se necesitan. No se incluyen emuladores adicionales.
 
-### Juegos de PC (por ejemplo FIFA 15)
-
-Pon la carpeta completa y ya descomprimida dentro de `Pon-tus-juegos-aqui/PC/`:
-
-```text
-Pon-tus-juegos-aqui/PC/FIFA 15/fifa15.exe
-```
-
-Tambien puedes poner un `.zip` (o `.7z` si tienes 7-Zip instalado). El script lo descomprime por ti.
-Al ejecutar `2-AGREGAR-JUEGOS.bat` se mueve a `RetroBat/roms/windows/juegos-pc/` y se crea un acceso `.bat` que RetroBat muestra en su menu de Windows.
-Si el script elige mal el `.exe`, crea un archivo `ejecutable.txt` dentro de la carpeta del juego con la ruta relativa del `.exe` correcto.
-
-### Juegos de consola
-
-- Archivos con extension inequivoca (`.gba`, `.nes`, `.sfc`, `.smc`, `.z64`, `.n64`, `.v64`, `.gb`, `.gbc`, `.nds`, `.md`, `.gen`): sueltos en `Pon-tus-juegos-aqui/`.
-- Formatos ambiguos (`.iso`, `.chd`, `.bin`, `.cue`, `.zip`): dentro de una subcarpeta con el nombre del sistema de RetroBat, por ejemplo `Pon-tus-juegos-aqui/ps2/` o `Pon-tus-juegos-aqui/psx/`. Los nombres validos estan en la [lista de sistemas de RetroBat](https://wiki.retrobat.org/systems-and-emulators/supported-game-systems).
-
-Algunas consolas necesitan BIOS (por ejemplo PS2). Debes obtenerla de tu propia consola y copiarla en `RetroBat/bios/` segun indique el wiki de cada sistema.
-
-## Importante
-
-- Este repositorio NO incluye RetroBat, emuladores, BIOS ni juegos.
-- Usa solo juegos que tengas derecho a usar (por ejemplo copias de tus propios discos).
-- La licencia de RetroBat prohibe venderlo preinstalado en dispositivos de almacenamiento. Este proyecto es gratuito y solo automatiza su instalacion.
-- Un juego de PC copiado a la USB no siempre funciona en otro PC: ver `docs/solucionar-errores.md`.
+Fuentes oficiales: https://pcsx2.net/downloads/ y https://pcsx2.net/docs/setup/
