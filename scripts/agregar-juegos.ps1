@@ -6,7 +6,8 @@ $inbox = Join-Path $root 'Pon-tus-juegos-aqui'
 $pcIn = Join-Path $inbox 'PC'
 $done = Join-Path $inbox '_procesados'
 $winDir = Join-Path $roms 'windows'
-$pcDir = Join-Path $winDir 'juegos-pc'
+$pcDir = Join-Path $rb 'juegos-pc'
+$oldPcDir = Join-Path $winDir 'juegos-pc'
 $script:count = 0
 $avisos = New-Object System.Collections.ArrayList
 
@@ -51,6 +52,23 @@ function Add-PcGame([string]$src, [string]$name) {
   Move-Item -LiteralPath $src -Destination $dest
 }
 
+function Move-OldPcGames {
+  if (-not (Test-Path -LiteralPath $oldPcDir)) { return }
+  foreach ($g in @(Get-ChildItem -LiteralPath $oldPcDir -Directory)) {
+    $target = Join-Path $pcDir $g.Name
+    if (Test-Path -LiteralPath $target) {
+      [void]$avisos.Add("'$($g.Name)' existe en la carpeta vieja y en la nueva. No se migro.")
+      continue
+    }
+    Move-Item -LiteralPath $g.FullName -Destination $target
+    $oldBat = Join-Path $winDir ($g.Name + '.bat')
+    if (Test-Path -LiteralPath $oldBat) { Remove-Item -LiteralPath $oldBat -Force }
+  }
+  if (@(Get-ChildItem -LiteralPath $oldPcDir -Force).Count -eq 0) {
+    Remove-Item -LiteralPath $oldPcDir -Force
+  }
+}
+
 function Update-PcLaunchers {
   foreach ($g in @(Get-ChildItem -LiteralPath $pcDir -Directory)) {
     $bat = Join-Path $winDir ($g.Name + '.bat')
@@ -61,7 +79,7 @@ function Update-PcLaunchers {
       continue
     }
     $rel = $exe.DirectoryName.Substring($pcDir.Length).TrimStart('\')
-    $lines = @('@echo off', ('cd /d "%~dp0juegos-pc\' + $rel + '"'), ('start "" /wait "' + $exe.Name + '"'))
+    $lines = @('@echo off', ('cd /d "%~dp0..\..\juegos-pc\' + $rel + '"'), ('start "" /wait "' + $exe.Name + '"'))
     Set-Content -LiteralPath $bat -Value $lines -Encoding OEM
     $script:count++
   }
@@ -87,7 +105,8 @@ try {
   if (-not (Test-Path (Join-Path $rb 'retrobat.exe'))) {
     throw 'RetroBat no esta instalado. Ejecuta primero 1-INSTALAR.bat'
   }
-  New-Item -ItemType Directory -Force -Path $pcDir, $pcIn, $done | Out-Null
+  New-Item -ItemType Directory -Force -Path $winDir, $pcDir, $pcIn, $done | Out-Null
+  Move-OldPcGames
 
   foreach ($f in @(Get-ChildItem -LiteralPath $pcIn -File | Where-Object { $_.Extension -in '.zip', '.7z' })) {
     $tmp = Join-Path $pcIn ('_x_' + $f.BaseName)
